@@ -3,6 +3,8 @@ package com.myapp.controller;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,8 @@ import com.myapp.proxy.CurrencyExchangeProxy;
 @RestController
 public class CurrencyConversionController {
 	
+	private final Logger LOGGER = LoggerFactory.getLogger(CurrencyConversionController.class);
+	
 	@Autowired
 	private CurrencyExchangeProxy proxy;
 	
@@ -25,7 +29,7 @@ public class CurrencyConversionController {
 			@PathVariable String to,
 			@PathVariable BigDecimal quantity
 			) {
-		
+		LOGGER.info("Inside calculateCurrencyConversion of CurrencyConversionController");
 		HashMap<String, String> uriVariables = new HashMap<>();
 		uriVariables.put("from",from);
 		uriVariables.put("to",to);
