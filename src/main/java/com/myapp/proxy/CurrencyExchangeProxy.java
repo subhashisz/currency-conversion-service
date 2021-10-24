@@ -13,4 +13,10 @@ public interface CurrencyExchangeProxy {
 	@GetMapping("/currency-exchange/from/{from}/to/{to}")
 	public CurrencyConversion retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
 
+	@GetMapping("/")
+	public String hello();
+
+	@GetMapping("/exchange")
+	public String helloUrl();
+
 }
