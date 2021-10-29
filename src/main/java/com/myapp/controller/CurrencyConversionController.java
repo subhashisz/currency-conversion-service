@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,6 +17,8 @@ import com.myapp.bean.CurrencyConversion;
 import com.myapp.proxy.CurrencyExchangeProxy;
 
 @RestController
+//@RequestMapping("/conversion")
+@RequestMapping("/currency-conversion")
 public class CurrencyConversionController {
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(CurrencyConversionController.class);
@@ -23,7 +26,7 @@ public class CurrencyConversionController {
 	@Autowired
 	private CurrencyExchangeProxy proxy;
 	
-	@GetMapping("/currency-conversion/from/{from}/to/{to}/quantity/{quantity}")
+	@GetMapping("/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversion(
 			@PathVariable String from,
 			@PathVariable String to,
@@ -48,7 +51,7 @@ public class CurrencyConversionController {
 		
 	}
 
-	@GetMapping("/currency-conversion-feign/from/{from}/to/{to}/quantity/{quantity}")
+	@GetMapping("/feign/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversion calculateCurrencyConversionFeign(
 			@PathVariable String from,
 			@PathVariable String to,
